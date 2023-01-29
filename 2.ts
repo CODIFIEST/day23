@@ -20,8 +20,8 @@ app.post('/message', (req, res) => {
     messages.push(message);
     res.send(message);
     i++;
-    console.log('messages', messages)
-})
+    console.log('messages', messages);
+});
 // route to get discord messages by username
 //pass in a username and look through messages array to find all 
 //messages from that user and return them.
@@ -35,12 +35,12 @@ app.get('/message/:username', (req, res) => {
         }
     });
     if (userMessages) {
-        console.log("messages retrieved")
-        console.log(userMessages)
-        res.send(userMessages)
+        console.log("messages retrieved");
+        console.log(userMessages);
+        res.send(userMessages);
     }
     else {
-        console.log('no messages found')
+        console.log('no messages found');
         res.send({});
     }
 });
@@ -54,19 +54,19 @@ app.put('/message/:ID', (req, res) => {
     let index = messages.findIndex((m => m.ID.toString() === req.params.ID))
     let dateTime = new Date();
 
-    console.log('pre-update', messages[index])
+    console.log('pre-update', messages[index]);
 
     if (messages[index].user === req.body.user) {
         messages[index].message = req.body.message;
         //should we update date time here?
         messages[index].lastEditAt = dateTime;
-        console.log('after update', messages[index])
+        console.log('after update', messages[index]);
         res.send(messages);
     }
     else {
-        console.log('wrong user or wrong ID')
-        res.send({})
+        console.log('wrong user or wrong ID');
+        res.send({});
     }
 })
 
-app.listen(3000)
+app.listen(3000);
